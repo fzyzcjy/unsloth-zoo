@@ -188,6 +188,9 @@ def requires_grad_for_gradient_checkpointing(model):
 
     # Add post forward hook
     def requires_grad_post_hook(module, input, output):
+        if not hasattr(output, 'requires_grad_'):
+            print(f'HACK! requires_grad_post_hook skip {module=}')
+            return
         output.requires_grad_(True)
     pass
 
