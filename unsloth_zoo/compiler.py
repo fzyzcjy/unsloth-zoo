@@ -360,7 +360,8 @@ pass
 _cross_entropy_code = """
 from torch.nn import CrossEntropyLoss
 
-@torch.compile(fullgraph = True, dynamic = True, options = torch_compile_options)
+print('HACK unsloth_zoo remove torch.compile on uncompiled_cross_entropy_loss!')
+# @torch.compile(fullgraph = True, dynamic = True, options = torch_compile_options)
 def uncompiled_cross_entropy_loss(self, hidden_states, labels,):
     logits = self.lm_head(hidden_states)
     logits = logits.float()
